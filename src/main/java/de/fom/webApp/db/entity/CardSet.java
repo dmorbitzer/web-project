@@ -1,4 +1,4 @@
-package de.fom.webapp.db.entity;
+package de.fom.webApp.db.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

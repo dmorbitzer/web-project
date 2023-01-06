@@ -1,6 +1,6 @@
-package de.fom.webapp.unit.service;
+package de.fom.webApp.unit.service;
 
-import de.fom.webapp.service.PaginationService;
+import de.fom.webApp.service.PaginationService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

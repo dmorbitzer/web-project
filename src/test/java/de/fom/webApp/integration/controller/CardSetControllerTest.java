@@ -1,4 +1,4 @@
-package de.fom.webapp.integration.controller;
+package de.fom.webApp.integration.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TEST_METHOD;
@@ -92,7 +92,7 @@ public class CardSetControllerTest {
     }
 
     @Test
-    void testSearchCardSetsWithParam() throws Exception{
+    void testSearchCardSetsWithParam() throws Exception {
         this.mockMvc.perform(
                 get("/api/searchCardSets")
                         .param("searchParam", "Harry Potter")
@@ -104,7 +104,7 @@ public class CardSetControllerTest {
 
     }
     @Test
-    void testSearchCardSetsWithTags() throws Exception{
+    void testSearchCardSetsWithTags() throws Exception {
         this.mockMvc.perform(
                         get("/api/searchCardSets")
                                 .param("tags","Zauberei")
@@ -116,7 +116,7 @@ public class CardSetControllerTest {
     }
 
     @Test
-    void testSearchCardSetsWithParamBogus() throws Exception{
+    void testSearchCardSetsWithParamBogus() throws Exception {
         this.mockMvc.perform(
                         get("/api/searchCardSets")
                                 .param("searchParam", "Aragorn")
@@ -128,7 +128,7 @@ public class CardSetControllerTest {
 
     }
     @Test
-    void testSearchCardSetsWithTagsBogus() throws Exception{
+    void testSearchCardSetsWithTagsBogus() throws Exception {
         this.mockMvc.perform(
                         get("/api/searchCardSets")
                                 .param("tags","Mein Schat")
@@ -137,5 +137,28 @@ public class CardSetControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON))
                 .andExpect(jsonPath("$.content.[0].tags").doesNotExist());
+    }
+    @Test
+    void testSelectCardSetById() throws Exception {
+        this.mockMvc.perform(
+                get("/api/selectCardSet")
+                        .param("cardSetId", "1")
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON))
+                .andExpect(jsonPath("$.content.[0].id").value(1));
+    }
+
+    @Test
+    void testSelectCardSetByIdBogus() throws Exception {
+        this.mockMvc.perform(
+                get("/api/selectCardSet")
+                        .param("cardSetId","Herr der Ringe")
+        )
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON))
+                .andExpect(jsonPath("$.content.[0].id").doesNotExist());
     }
 }

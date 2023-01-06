@@ -1,7 +1,7 @@
-package de.fom.webapp.service;
+package de.fom.webApp.service;
 
-import de.fom.webapp.db.entity.CardSet;
-import de.fom.webapp.db.repository.CardSetRepository;
+import de.fom.webApp.db.entity.CardSet;
+import de.fom.webApp.db.repository.CardSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
